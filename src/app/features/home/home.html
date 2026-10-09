@@ -1,0 +1,22 @@
+<section id="home" class="mx-auto flex min-h-[calc(100svh-4rem)] max-w-5xl flex-col justify-center px-6">
+  <p class="font-medium text-brand-500">Lorem ipsum, soy</p>
+  <h1 class="mt-2 text-5xl font-bold tracking-tight sm:text-7xl">{{ site.name }}</h1>
+  <p class="mt-6 max-w-xl text-lg text-muted">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua.
+  </p>
+  <div class="mt-8 flex flex-wrap gap-4">
+    <a appButton routerLink="/" fragment="projects">Lorem ipsum</a>
+    <a appButton variant="outline" routerLink="/" fragment="contact">Dolor sit</a>
+  </div>
+</section>
+
+@for (id of sections; track id) {
+  <app-section [sectionId]="id" [heading]="t().nav[id]">
+    <p class="max-w-2xl text-muted">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+    </p>
+  </app-section>
+}

@@ -2,12 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Portfolio</title>
+  <title>Alvaro Diaz | Portfolio</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+
+<script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var dark = stored
+          ? stored === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
+
+<body class="bg-background font-sans text-foreground antialiased">
   <app-root></app-root>
 </body>
 </html>
