@@ -1,18 +1,23 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { SITE, NAV_SECTIONS } from '@core/config/site';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { Hero } from '@features/hero/hero';
+import { About } from '@features/about/about';
+import { Skills } from '@features/skills/skills';
+import { Projects } from '@features/projects/projects/projects';
+import { Contact } from '@features/contact/contact';
 import { I18n } from '@core/i18n/i18n';
-import { Button } from '@shared/ui/button/button';
-import { Section } from '@shared/ui/section/section';
+import { Seo } from '@core/seo/seo';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, Button, Section],
+  imports: [Hero, About, Skills, Projects, Contact],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
-   protected readonly site = SITE;
-  protected readonly sections = NAV_SECTIONS;
-  protected readonly t = inject(I18n).t;
+  private readonly seo = inject(Seo);
+  private readonly t = inject(I18n).t;
+
+  constructor() {
+    effect(() => this.seo.update(this.t().meta));
+  }
 }

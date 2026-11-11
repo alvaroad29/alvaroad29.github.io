@@ -1,0 +1,14 @@
+<app-section sectionId="skills" [heading]="t().nav.skills">
+  <div class="grid gap-6 md:grid-cols-2">
+    @for (group of groups; track group.id) {
+      <div appCard class="p-6">
+        <h3 class="mb-4 text-lg font-semibold">{{ t().skills.groups[group.id] }}</h3>
+        <ul class="flex flex-wrap gap-2">
+          @for (item of group.items; track item) {
+            <li><app-badge>{{ item }}</app-badge></li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</app-section>

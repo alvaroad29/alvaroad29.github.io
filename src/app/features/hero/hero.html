@@ -1,0 +1,18 @@
+<section
+  id="home"
+  class="mx-auto flex min-h-[calc(100svh-4rem)] max-w-5xl flex-col justify-center px-6"
+>
+  <div class="animate-fade-up motion-reduce:animate-none">
+    <p class="font-medium text-brand-500">{{ t().hero.greeting }}</p>
+    <h1 class="mt-2 text-5xl font-bold tracking-tight sm:text-7xl">{{ site.name }}</h1>
+    <p class="mt-3 text-xl font-medium sm:text-2xl">{{ t().hero.role }}</p>
+    <p class="mt-6 max-w-xl text-lg text-muted">{{ t().hero.description }}</p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a appButton routerLink="/" fragment="projects">{{ t().hero.ctaProjects }}</a>
+      <a appButton variant="outline" routerLink="/" fragment="contact">
+        {{ t().hero.ctaContact }}
+      </a>
+      <a appButton variant="outline" [href]="site.cvUrl" download>{{ t().hero.ctaCv }}</a>
+    </div>
+  </div>
+</section>

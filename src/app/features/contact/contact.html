@@ -1,0 +1,80 @@
+<app-section sectionId="contact" [heading]="t().nav.contact">
+  <div class="grid gap-12 md:grid-cols-2">
+    <div>
+      <p class="text-muted">{{ t().contact.intro }}</p>
+      <ul class="mt-6 space-y-3">
+        <li><a class="hover:text-brand-500" [href]="'mailto:' + site.email">{{ site.email }}</a></li>
+        <li>
+          <a class="hover:text-brand-500" [href]="site.github" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </li>
+        <li>
+          <a class="hover:text-brand-500" [href]="site.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </li>
+      </ul>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate class="space-y-5">
+      <div>
+        <label for="contact-name" class="mb-1.5 block text-sm font-medium">{{ t().contact.name }}</label>
+        <input
+          id="contact-name"
+          type="text"
+          formControlName="name"
+          autocomplete="name"
+          maxlength="80"
+          [class]="fieldClass"
+          [attr.aria-invalid]="errorMessage('name') !== null"
+          [attr.aria-describedby]="errorMessage('name') ? 'contact-name-error' : null"
+        />
+        @if (errorMessage('name'); as error) {
+          <p id="contact-name-error" class="mt-1 text-sm text-red-600 dark:text-red-400">{{ error }}</p>
+        }
+      </div>
+
+      <div>
+        <label for="contact-email" class="mb-1.5 block text-sm font-medium">{{ t().contact.email }}</label>
+        <input
+          id="contact-email"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          [class]="fieldClass"
+          [attr.aria-invalid]="errorMessage('email') !== null"
+          [attr.aria-describedby]="errorMessage('email') ? 'contact-email-error' : null"
+        />
+        @if (errorMessage('email'); as error) {
+          <p id="contact-email-error" class="mt-1 text-sm text-red-600 dark:text-red-400">{{ error }}</p>
+        }
+      </div>
+
+      <div>
+        <label for="contact-message" class="mb-1.5 block text-sm font-medium">{{ t().contact.message }}</label>
+        <textarea
+          id="contact-message"
+          formControlName="message"
+          rows="5"
+          maxlength="2000"
+          [class]="fieldClass"
+          [attr.aria-invalid]="errorMessage('message') !== null"
+          [attr.aria-describedby]="errorMessage('message') ? 'contact-message-error' : null"
+        ></textarea>
+        @if (errorMessage('message'); as error) {
+          <p id="contact-message-error" class="mt-1 text-sm text-red-600 dark:text-red-400">{{ error }}</p>
+        }
+      </div>
+
+      <button appButton type="submit" [disabled]="status() === 'sending'" class="disabled:opacity-60">
+        {{ status() === 'sending' ? t().contact.sending : t().contact.send }}
+      </button>
+
+      @switch (status()) {
+        @case ('success') {
+          <p role="status" class="text-green-700 dark:text-green-400">{{ t().contact.success }}</p>
+        }
+        @case ('error') {
+          <p role="alert" class="text-red-600 dark:text-red-400">{{ t().contact.error }}</p>
+        }
+      }
+    </form>
+  </div>
+</app-section>

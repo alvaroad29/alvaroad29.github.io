@@ -1,0 +1,15 @@
+<app-section sectionId="about" [heading]="t().nav.about">
+  <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
+    <div
+      aria-hidden="true"
+      class="flex size-40 items-center justify-center rounded-full border border-border bg-surface text-5xl font-bold text-brand-500"
+    >
+      {{ initials }}
+    </div>
+    <div class="max-w-2xl space-y-4 text-muted">
+      @for (paragraph of t().about.paragraphs; track $index) {
+        <p>{{ paragraph }}</p>
+      }
+    </div>
+  </div>
+</app-section>

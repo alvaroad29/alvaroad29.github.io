@@ -1,0 +1,45 @@
+<article appCard class="flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lg">
+  @if (project().image; as src) {
+    <img
+      [ngSrc]="src"
+      width="640"
+      height="360"
+      [alt]="project().title"
+      class="aspect-video w-full object-cover"
+    />
+  } @else {
+    <div
+      aria-hidden="true"
+      class="aspect-video w-full bg-linear-to-br from-brand-500/30 to-brand-700/30"
+    ></div>
+  }
+
+  <div class="flex flex-1 flex-col p-6">
+    <h3 class="text-xl font-semibold">{{ project().title }}</h3>
+    <p class="mt-2 text-muted">{{ summary() }}</p>
+    <ul class="mt-4 flex-1 list-disc space-y-1 pl-5 text-sm text-muted">
+      @for (item of highlights(); track $index) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+
+    <ul class="mt-4 flex flex-wrap gap-2">
+      @for (tech of project().stack; track tech) {
+        <li><app-badge>{{ tech }}</app-badge></li>
+      }
+    </ul>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      @if (project().demoUrl; as url) {
+        <a appButton [href]="url" target="_blank" rel="noopener noreferrer">
+          {{ t().projects.demo }}
+        </a>
+      }
+      @if (project().repoUrl; as url) {
+        <a appButton variant="outline" [href]="url" target="_blank" rel="noopener noreferrer">
+          {{ t().projects.code }}
+        </a>
+      }
+    </div>
+  </div>
+</article>

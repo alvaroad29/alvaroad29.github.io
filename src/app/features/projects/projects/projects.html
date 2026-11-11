@@ -1,0 +1,28 @@
+<app-section sectionId="projects" [heading]="t().nav.projects">
+  <div role="group" [attr.aria-label]="t().projects.filterLabel" class="mb-8 flex flex-wrap gap-2">
+    <button
+      type="button"
+      [class]="chipClass(selected() === null)"
+      [attr.aria-pressed]="selected() === null"
+      (click)="select(null)"
+    >
+      {{ t().projects.all }}
+    </button>
+    @for (tech of technologies; track tech) {
+      <button
+        type="button"
+        [class]="chipClass(selected() === tech)"
+        [attr.aria-pressed]="selected() === tech"
+        (click)="select(tech)"
+      >
+        {{ tech }}
+      </button>
+    }
+  </div>
+
+  <ul class="grid gap-6 md:grid-cols-2">
+    @for (project of visible(); track project.slug) {
+      <li><app-project-card [project]="project" /></li>
+    }
+  </ul>
+</app-section>
