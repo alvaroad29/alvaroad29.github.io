@@ -49,7 +49,7 @@ const es = {
   },
   contact: {
     intro:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ¿Hablamos? Escribime o completá el formulario.',
+      'Si te interesa mi perfil o querés conocer más sobre mis proyectos, no dudes en contactarme.',
     name: 'Nombre',
     email: 'Email',
     message: 'Mensaje',
@@ -127,7 +127,7 @@ const en: Dictionary = {
   },
   contact: {
     intro:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Let's talk! Email me or fill in the form.",
+      "If you're interested in my profile or would like to learn more about my projects, feel free to get in touch with me.",
     name: 'Name',
     email: 'Email',
     message: 'Message',
